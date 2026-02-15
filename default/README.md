@@ -1,35 +1,31 @@
-# Math Operations Module
+# Math Operations Project
 
-This repository provides basic math operations (addition, subtraction) with automated tests and CI integration.
+This repository implements basic math operations and automated testing using pytest.
 
-## Structure
+## Source Code
+- `src/math_operations.py`: Contains `add` and `subtract` functions.
 
-- `src/math_operations.py`: Core math logic (add, subtract)
-- `tests/test_add.py`: Tests for addition
-- `tests/test_subtract.py`: Tests for subtraction
-- `default/requirements.txt`: Python dependencies
-- `default/math.json`: Metadata for workflow automation
+## Tests
+- `tests/test_add.py`: Tests for the `add` function.
+- `tests/test_subtract.py`: Tests for the `subtract` function.
 
-## Usage
-
-```python
-from src.math_operations import add, subtract
-print(add(2, 3))       # 5
-print(subtract(5, 2))  # 3
-```
-
-## Running Tests
-
+## Requirements
 Install dependencies:
+
 ```bash
 pip install -r default/requirements.txt
 ```
 
-Run tests:
+## Running Tests
+Execute all tests and generate reports:
+
 ```bash
-pytest tests/
+python -m pytest tests/ -v --tb=short --junitxml=reports/report.xml --html=reports/report.html --self-contained-html
 ```
 
 ## CI/CD Workflow
+The workflow is defined in `.github/workflows/ci.yml` and runs tests on push or pull request.
 
-Refer to `.github/workflows/ci.yml` for pipeline details. Workflow metadata is provided in `default/math.json` for automation agents.
+## Branches
+- Default branch: `main`
+- Feature branch: `Feature3`
