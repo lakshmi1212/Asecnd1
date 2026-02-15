@@ -1,31 +1,32 @@
-# Math Operations Project
+# Math Operations Python Module
 
 ## Overview
-This project provides basic math operations (addition and subtraction) implemented in Python, with comprehensive pytest-based tests and CI/CD integration instructions.
+This repository provides simple math operations (addition and subtraction) with production-ready test coverage using `pytest`.
 
-## Source Code
-- **src/math_operations.py**: Contains `add` and `subtract` functions.
+## Folder Structure
+- `src/` : Source code for math operations
+- `tests/` : Pytest-based test files
+- `default/requirements.txt` : Python dependencies
+- `default/README.md` : Project documentation
+- `default/math.json` : CI/CD and metadata for workflow generation
 
-## Tests
-- **tests/test_add.py**: Pytest cases for addition.
-- **tests/test_subtract.py**: Pytest cases for subtraction.
+## Usage
+```python
+from src.math_operations import add, subtract
 
-## Requirements
-Install dependencies:
-```
-pip install -r default/requirements.txt
+print(add(2, 3))        # Output: 5
+print(subtract(5, 2))   # Output: 3
 ```
 
 ## Running Tests
-Run all tests and generate reports:
+Install dependencies:
+```bash
+pip install -r default/requirements.txt
 ```
-python -m pytest tests/ -v --tb=short --junitxml=reports/report.xml --html=reports/report.html --self-contained-html
+Run all tests:
+```bash
+pytest tests/
 ```
 
-## CI/CD Workflow
-- Workflow file: `.github/workflows/ci.yml`
-- Default branch: `main`
-- Feature branch: `Feature3`
-
-## Metadata
-See `default/math.json` for workflow and test metadata.
+## Workflow
+The repository is designed for CI/CD integration. See `default/math.json` for workflow metadata.
