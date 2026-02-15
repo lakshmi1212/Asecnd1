@@ -1,0 +1,27 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - Feature3
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    name: CI Pipeline
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install -r default/requirements.txt
+      - name: Run Pytest
+        run: |
+          python -m pytest tests/ -v --tb=short --junitxml=reports/report.xml --html=reports/report.html --self-contained-html
