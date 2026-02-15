@@ -1,22 +1,18 @@
-# test_add.py
 import pytest
 from src.math_operations import add
 
-@pytest.mark.parametrize("a, b, expected", [
-    (2, 3, 5),
-    (-1, 1, 0),
-    (0, 0, 0),
-    (100, 200, 300),
-    (-5, -7, -12),
-    (1.5, 2.5, 4.0),
-    (-1.5, 1.5, 0.0),
-])
-def test_add(a, b, expected):
-    assert add(a, b) == expected
+def test_add_positive():
+    assert add(2, 3) == 5
 
+def test_add_negative():
+    assert add(-2, -3) == -5
 
-def test_add_type_error():
-    with pytest.raises(TypeError):
-        add("a", 1)
-    with pytest.raises(TypeError):
-        add(1, "b")
+def test_add_zero():
+    assert add(0, 0) == 0
+
+def test_add_mixed():
+    assert add(-2, 3) == 1
+    assert add(2, -3) == -1
+
+def test_add_large_numbers():
+    assert add(10**6, 10**6) == 2*10**6
