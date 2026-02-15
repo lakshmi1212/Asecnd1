@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Python Tests and Upload Reports
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,13 +28,11 @@ jobs:
           mkdir -p reports
           python -m pytest tests/ -v --tb=short --junitxml=reports/report.xml --html=reports/report.html --self-contained-html
       - name: Configure AWS credentials
-        if: ${{ always() }}
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Upload reports to S3
-        if: ${{ always() }}
         run: |
           aws s3 sync reports/ s3://ci-test-results-buckett/pytest-reports/${{ github.sha }}/
