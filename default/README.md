@@ -1,20 +1,14 @@
-# Math Operations Module
+# Math Operations
 
-This repository provides basic math operations (`add` and `subtract`) with production-ready unit tests and CI integration guidance.
-
-## Folder Structure
-
-- `src/` : Source code for math operations
-- `tests/` : Pytest-based unit tests
-- `default/` : Project metadata, requirements, and documentation
+This repository provides basic math operations (addition and subtraction) with comprehensive tests and CI-ready metadata.
 
 ## Usage
 
 ```
 from src.math_operations import add, subtract
 
-print(add(2, 3))       # Output: 5
-print(subtract(5, 2))  # Output: 3
+print(add(2, 3))       # 5
+print(subtract(5, 3))  # 2
 ```
 
 ## Running Tests
@@ -24,18 +18,11 @@ Install dependencies:
 pip install -r default/requirements.txt
 ```
 
-Run all tests:
+Run tests:
 ```
-pytest tests/ -v --tb=short --junitxml=reports/report.xml --html=reports/report.html --self-contained-html
+pytest tests/
 ```
 
-## CI/CD Workflow
+## CI/CD
 
-- Workflow file: `.github/workflows/ci.yml`
-- On push to `Feature4` or PR to `main`, tests run automatically and generate reports in `reports/`.
-
-## Requirements
-
-- Python >=3.10
-- pytest
-- pytest-html
+This repo is CI-ready. See `default/math.json` for workflow metadata.
