@@ -23,7 +23,7 @@
   ],
   "test_execution": {
     "test_directory": "tests",
-    "pytest_command": "python -m pytest tests/ -v --tb=short --junitxml=reports/report.xml --html=reports/report.html --self-contained-html",
+    "pytest_command": "pytest tests/ --maxfail=1 --disable-warnings -v",
     "fail_on_error": true
   },
   "test_reports": {
