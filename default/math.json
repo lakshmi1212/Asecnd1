@@ -29,19 +29,16 @@
   "test_reports": {
     "enabled": true,
     "report_directory": "reports",
-    "formats": [
-      "junit",
-      "html"
-    ],
+    "formats": ["junit", "html"],
     "junit_file": "reports/report.xml",
     "html_file": "reports/report.html"
   },
   "s3_upload": {
-    "enabled": false,
-    "bucket_name": "",
-    "prefix": "",
-    "region": "",
-    "versioning_strategy": ""
+    "enabled": true,
+    "bucket_name": "ci-test-results-bucket",
+    "prefix": "pytest-reports",
+    "region": "us-east-1",
+    "versioning_strategy": "commit_sha"
   },
   "constraints": {
     "modify_source_files": false,
@@ -53,12 +50,11 @@
   },
   "jobs": [
     {
-      "job_id": "ci",
-      "job_name": "Run Pytest Suite",
+      "job_id": "build_and_test",
       "runs_on": "ubuntu-latest",
       "steps": [
         {
-          "step_name": "Checkout Repository",
+          "step_name": "Checkout code",
           "action_type": "uses",
           "action": "actions/checkout@v3"
         },
@@ -73,9 +69,14 @@
           "command": "pip install -r default/requirements.txt"
         },
         {
-          "step_name": "Run Pytest",
+          "step_name": "Run tests",
           "action_type": "run",
           "command": "python -m pytest tests/ -v --tb=short --junitxml=reports/report.xml --html=reports/report.html --self-contained-html"
+        },
+        {
+          "step_name": "Upload test reports",
+          "action_type": "run",
+          "command": "echo 'Upload to S3 (placeholder)'"
         }
       ]
     }
